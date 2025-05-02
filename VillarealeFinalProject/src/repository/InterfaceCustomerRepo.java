@@ -1,5 +1,5 @@
 package repository;
-///Abstracts access to customer data.
+//Abstracts access to customer data.
 public interface InterfaceCustomerRepo {
 	void addCustomer(Customer customer);
 	void removeCustoemr(Customer customer);

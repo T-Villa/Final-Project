@@ -1,5 +1,5 @@
 package scene;
-//sale processing interface
+// sale processing interface
 public class SalesViewController {
 
 }

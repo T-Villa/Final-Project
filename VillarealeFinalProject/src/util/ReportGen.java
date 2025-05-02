@@ -1,4 +1,4 @@
-//Generate sales reports / summary
+// Generate sales reports / summary
 package util;
 
 public class ReportGen {

@@ -1,5 +1,5 @@
 package scene;
-//display custoemr list, add/edit form, view history
+// display custoemr list, add/edit form, view history
 
 public class CustomerViewController {
 

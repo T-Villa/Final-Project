@@ -1,5 +1,5 @@
 package repository;
-//Handles sale transaction records.
+///Handles sale transaction records.
 public interface InterfaceSaleRepository {
 	void recordSale(Sale sale);
 	
