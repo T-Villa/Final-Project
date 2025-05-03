@@ -1,3 +1,4 @@
+//Class for data on car for drop down menus in GUI
 package model;
 
 import java.util.*;
