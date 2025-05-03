@@ -38,7 +38,7 @@ public class Car {
 		this.accessories = null; // change 
 		
 		this.availability = true;
-		this.SKU =/*=*/ ""; //have generator create unqique SKU for cars 
+		this.SKU =/*=*/ ""; //have generator create unique SKU for cars 
 		
 	}
 	public static String requiredField(String val, String field) {
