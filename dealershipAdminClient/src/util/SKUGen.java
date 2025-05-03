@@ -1,6 +1,6 @@
 // Generate unique id for cars, customer, & sales
 package util;
 
-public class IdGen {
+public class SKUGen {
 
 }

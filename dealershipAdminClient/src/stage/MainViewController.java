@@ -5,3 +5,5 @@ package stage;
 public class MainViewController {
 
 }
+
+//Dropdown yearComboBox.setItems(FXCollections.observableArrayList(CarMetadataProvider.getAvailableYears()));
