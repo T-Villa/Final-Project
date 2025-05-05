@@ -92,9 +92,11 @@ public class InventoryViewController {
 						String trimLvl = trimLvlField.getValue();
 						double price = Double.parseDouble(priceField.getText());
 						
-							if(year == null||make==null||model==null||color==null) {
-								throw new IllegalArgumentException("Please fill out year, make, model and color");
-							}
+						required(year,"Year");
+						required(make,"Make");
+						required(model,"Model");
+						required(trimLvl,"Trim");
+						required(color,"Color");
 						
 						Car newCar = new Car(year,make,model,trimLvl,color,List.of(),price);
 						inventoryManager.addCar(newCar);
@@ -144,6 +146,11 @@ public class InventoryViewController {
 
 	     return root;
 	}
+	 private void required(Object val, String field) {
+		 if(val == null) {
+			 throw new IllegalArgumentException(field+" must be filled out");
+		 }
+	 }
 	public InventoryViewController(InventoryManager inventoryManager) {
 		this.inventoryManager = inventoryManager;
 	}

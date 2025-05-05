@@ -25,6 +25,7 @@ public class SalesViewController {
 
 	public Node getView() {
 		
+		
 		return null;
 	}
 }

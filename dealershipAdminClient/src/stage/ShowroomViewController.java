@@ -33,9 +33,4 @@ public class ShowroomViewController {
 	public ShowroomViewController(InventoryManager inventoryManager) {
 		this.inventoryManager = inventoryManager;
 	}
-	/*public Node getView() {
-		VBox Layout = new VBox();
-		//car cards
-		return new ScrollPane(Layout); 
-	}*/
 }
