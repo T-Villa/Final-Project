@@ -1,11 +1,11 @@
 package repository;
-import model.Sales;
+import model.Sale;
 
 import java.util.*;
 ///Handles sale transaction records.
 public interface InterfaceSaleRepo {
-	void recordSale(Sales sale);
+	void recordSale(Sale sale);
 	
-	List<Sales> getSaleByCustomerId(String customerId);
-	List<Sales> getAllSales();
+	List<Sale> getSaleByCustomerId(String customerId);
+	List<Sale> getAllSales();
 }

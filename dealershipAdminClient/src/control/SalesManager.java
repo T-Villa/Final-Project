@@ -1,13 +1,14 @@
-package control;
 /** Handles sales processing updates inventory and customer data
  * Methods:
  * processSale(), generateReport(), getSalesByCustomer()
  **/
-import java.util.*;
+package control;
 
 import model.Sale;
 import model.Car;
 import model.Customer;
+
+import java.util.*;
 
 public class SalesManager {
 	private final List<Sale> sales = new ArrayList<>();

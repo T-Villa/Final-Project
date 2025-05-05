@@ -4,8 +4,9 @@
  **/
 package control;
 
-import java.util.*;
 import model.Car;
+
+import java.util.*;
 
 public class InventoryManager {
 	private final Map<String, Car> inventory = new HashMap<>(); //would map or list be better?

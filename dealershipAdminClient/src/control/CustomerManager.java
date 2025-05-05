@@ -1,7 +1,8 @@
+//Manages customer records and search
 package control;
-/**Manages customer records and search
-**/
+
 import model.Customer;
+
 import java.util.*;
 
 public class CustomerManager {

@@ -1,5 +1,13 @@
 package stage;
 
+import control.InventoryManager;
+import control.CustomerManager;
+import control.SalesManager;
+import stage.ShowroomViewController;
+import stage.InventoryViewController;
+import stage.CustomerViewController;
+import stage.SalesViewController;
+
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -7,15 +15,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.scene.Node;
-
-import control.InventoryManager;
-import control.CustomerManager;
-import control.SalesManager;
-
-import stage.ShowroomViewController;
-import stage.InventoryViewController;
-import stage.CustomerViewController;
-import stage.SalesViewController;
 
 
 public class MainController {

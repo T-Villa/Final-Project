@@ -1,8 +1,10 @@
 package stage;
 
+import control.SalesManager;
+import model.Sale;
+
 import java.util.List;
 
-import control.SalesManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -17,7 +19,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import model.Sales;
 
 // sale processing interface
 public class SalesViewController {

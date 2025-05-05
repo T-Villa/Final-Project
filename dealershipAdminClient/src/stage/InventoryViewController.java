@@ -1,7 +1,12 @@
+//display inventory with filter option
 package stage;
-/**display inventory with filter option
- * Buttons: 'Add Car" , 'Edit Car' , 'Delete Car' , 'Filter' 
- **/
+
+import model.Car;
+import model.CarData;
+import control.InventoryManager;
+
+import java.util.List;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -11,12 +16,6 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
-import model.Car;
-import model.CarData;
-import control.InventoryManager;
-
-import java.util.List;
 
 public class InventoryViewController {
 	private final InventoryManager inventoryManager;

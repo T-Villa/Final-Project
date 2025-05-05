@@ -1,10 +1,9 @@
 package model;
 
 import java.time.LocalDate;
+
 import java.util.*;
-/**
- * 
- **/
+
 public class Car {
 	private final int year;
 	private final String make;

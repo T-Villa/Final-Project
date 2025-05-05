@@ -1,5 +1,9 @@
+// display customer list, add/edit form, view history
+
 package stage;
-// display custoemr list, add/edit form, view history
+
+import model.Customer;
+import control.CustomerManager;
 
 import java.util.List;
 
@@ -17,10 +21,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
-import model.Customer;
-import control.CustomerManager;
-
 
 public class CustomerViewController {
 	
