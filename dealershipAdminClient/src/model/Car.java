@@ -35,10 +35,16 @@ public class Car {
 		}
 		this.year = year;
 		
+		if(price < 0) {
+			throw new IllegalArgumentException("Price must be positive");
+		}
+		this.price = price;
+		
 		this.accessories = null; // change 
 		
 		this.availability = true;
-		this.SKU =/*=*/ ""; //have generator create unique SKU for cars 
+		this.SKU = UUID.randomUUID().toString();//possbily change
+
 		
 	}
 	public static String requiredField(String val, String field) {
