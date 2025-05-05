@@ -114,7 +114,7 @@ public class InventoryViewController {
 			//	formStage.initOwner(primaryStage);
 				formStage.show();
 	     });
-	     removeCarButton.setOnAction(e->{
+	     removeCarButton.setOnAction(event->{
 	    	Car choosen = table.getSelectionModel().getSelectedItem();
 	    			if(choosen != null) {
 	    				boolean removed = inventoryManager.removeCar(choosen.getSKU());
@@ -129,7 +129,7 @@ public class InventoryViewController {
 	    				new Alert(Alert.AlertType.ERROR,"Select car to remove").showAndWait();
 	    			}
 	     });
-	     markSoldButton.setOnAction(e->{
+	     markSoldButton.setOnAction(event->{
 	    	Car selected = table.getSelectionModel().getSelectedItem();
 	    		if(selected != null) {
 	    			selected.setAvailability(false);

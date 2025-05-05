@@ -18,7 +18,7 @@ import control.InventoryManager;
 public class ShowroomViewController {
 	private final InventoryManager inventoryManager;
 	
-	public void show(Stage stage) {
+	public Node getView(){
 		VBox carList = new VBox(10);
 		carList.setPadding(new Insets(10));
 		
@@ -32,16 +32,14 @@ public class ShowroomViewController {
 		ScrollPane scrollPane = new ScrollPane(carList);
 		Scene scene = new Scene(scrollPane,800,6000);
 		
-		stage.setTitle("Showroom - Available Cars");
-		stage.setScene(scene);
-		stage.show();
+		return scrollPane; // not done
 	}
 	public ShowroomViewController(InventoryManager inventoryManager) {
 		this.inventoryManager = inventoryManager;
 	}
-	public Node getView() {
+	/*public Node getView() {
 		VBox Layout = new VBox();
 		//car cards
-		return new ScrollPane(Layout);
-	}
+		return new ScrollPane(Layout); 
+	}*/
 }
