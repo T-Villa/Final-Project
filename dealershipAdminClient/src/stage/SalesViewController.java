@@ -1,6 +1,7 @@
 package stage;
 
 import control.SalesManager;
+import model.Customer;
 import model.Sale;
 
 import java.util.List;
@@ -22,9 +23,12 @@ import javafx.stage.Stage;
 
 // sale processing interface
 public class SalesViewController {
-
+	private final SalesManager salesManager;
+	
 	public Node getView() {
-		
+		TableView<Sale> table = new TableView<>();
+		ObservableList<Sale> saleData = FXCollections.observableArrayList(salesManager.get);
+		table.setItems(customerData);
 		
 		return null;
 	}

@@ -37,7 +37,7 @@ public class InventoryViewController {
 		TableColumn<Car, Double> priceColumn = new TableColumn<>("Price");
 			priceColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleDoubleProperty(cellData.getValue().getPrice()).asObject());
 		TableColumn<Car, Boolean> availabilityColumn = new TableColumn<>("Availability");
-		availabilityColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleBooleanProperty(cellData.getValue().isAvailable()));
+			availabilityColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleBooleanProperty(cellData.getValue().isAvailable()));
 		
 		table.getColumns().addAll(SKUColumn,makeColumn,modelColumn,yearColumn,priceColumn,availabilityColumn);
 		
@@ -112,7 +112,6 @@ public class InventoryViewController {
 				
 				Scene formScene = new Scene(formLayout, 300, 300);
 				formStage.setScene(formScene);
-			//	formStage.initOwner(primaryStage);
 				formStage.show();
 	     });
 	     removeCarButton.setOnAction(event->{
@@ -140,11 +139,11 @@ public class InventoryViewController {
 	     HBox buttons = new HBox(10, addCarButton, removeCarButton, markSoldButton);
 	     buttons.setPadding(new Insets(10));
 		
-		 VBox root = new VBox(10, table, buttons);
-		 root.setPadding(new Insets(10));
+		 VBox layout = new VBox(10, table, buttons);
+		 layout.setPadding(new Insets(10));
 	     priceColumn.setPrefWidth(100);
 
-	     return root;
+	     return layout;
 	}
 	 private void required(Object val, String field) {
 		 if(val == null) {
