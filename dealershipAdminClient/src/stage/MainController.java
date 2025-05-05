@@ -1,20 +1,15 @@
 package stage;
 
 import control.InventoryManager;
-import control.CustomerManager;
-import control.SalesManager;
-import stage.ShowroomViewController;
-import stage.InventoryViewController;
-import stage.CustomerViewController;
-import stage.SalesViewController;
-
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.*;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.scene.Node;
 
 
 public class MainController {
