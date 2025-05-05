@@ -1,6 +1,5 @@
 package view;
-import stage.InventoryViewController;
-
+import stage.MainController;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -11,7 +10,7 @@ public class Client extends Application  {
 	}
 	@Override
 	public void start(Stage primaryStage) {
-		InventoryViewController controller = new InventoryViewController();
-		controller.mainView(primaryStage);
+		MainController controller = new MainController();
+		controller.show(primaryStage);
 	}
 }
