@@ -5,6 +5,7 @@ package stage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
@@ -18,9 +19,9 @@ import control.InventoryManager;
 import java.util.List;
 
 public class InventoryViewController {
-	private InventoryManager inventoryManager = new InventoryManager();
+	private final InventoryManager inventoryManager;
 	
-	public void mainView(Stage primaryStage) {
+	 public Node getView() {
 		TableView<Car> table = new TableView<>();
 			ObservableList<Car> carData = FXCollections.observableArrayList(inventoryManager.getAllCars());
 			table.setItems(carData);
@@ -110,7 +111,7 @@ public class InventoryViewController {
 				
 				Scene formScene = new Scene(formLayout, 300, 300);
 				formStage.setScene(formScene);
-				formStage.initOwner(primaryStage);
+			//	formStage.initOwner(primaryStage);
 				formStage.show();
 	     });
 	     removeCarButton.setOnAction(e->{
@@ -140,11 +141,12 @@ public class InventoryViewController {
 		
 		 VBox root = new VBox(10, table, buttons);
 		 root.setPadding(new Insets(10));
-	     Scene scene = new Scene(root, 800, 400);
 	     priceColumn.setPrefWidth(100);
-	     primaryStage.setTitle("Luxury Car Inventory");
-	     primaryStage.setScene(scene);
-	     primaryStage.show();
+
+	     return root;
+	}
+	public InventoryViewController(InventoryManager inventoryManager) {
+		this.inventoryManager = inventoryManager;
 	}
 }
 //add accessories (optional choice for user to add, not required)
