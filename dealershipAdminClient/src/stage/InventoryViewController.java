@@ -17,7 +17,7 @@ import control.InventoryManager;
 
 import java.util.List;
 
-public class MainViewController {
+public class InventoryViewController {
 	private InventoryManager inventoryManager = new InventoryManager();
 	
 	public void mainView(Stage primaryStage) {
@@ -147,6 +147,6 @@ public class MainViewController {
 	     primaryStage.show();
 	}
 }
-
+//add accessories (optional choice for user to add, not required)
 //add filter for inventory
 //be able to sort columns
