@@ -6,6 +6,7 @@ import model.Customer;
 import model.Sale;
 import model.Customer;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javafx.collections.FXCollections;
@@ -33,21 +34,21 @@ public class SalesViewController {
 		table.setItems(salesData);
 
 		//Columns 
-		TableColumn<Sale,LocalDate> saleDateColumn = new TableColumn<>();
-			saleDateColumn.setCellValueFactory(data -> new javafx.beans.property.SimpleLocalDateProperty(data.getValue().getSaleDate()));
-		TableColumn<Sale,String> idColumn = new TableColumn<>();
-			idColumn.setCellValueFacotry(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getSaleID()));
-		TableColumn<Sale,String> buyerColumn = new TableColumn<>();
-			buyerColumn.setCellValueFacotry(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getCustomer()));
-		TableColumn<Sale,Stirng> priceColumn = new TableColumn<>();
-			priceColumn.setCellValueFactory(data -> new javafx.beans.property.SimpleDoubleProperty(data.getValue().getPrice()));
+		TableColumn<Sale,String> idColumn = new TableColumn<>("Sale ID");
+			idColumn.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getSaleID()));
+		TableColumn<Sale,LocalDate> saleDateColumn = new TableColumn<>("Date Sold");
+			saleDateColumn.setCellValueFactory(data -> new javafx.beans.property.SimpleObjectProperty<>(data.getValue().getSaleDate()));
+		TableColumn<Sale,String> buyerColumn = new TableColumn<>("Buyer");
+			buyerColumn.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getCustomer()));
+		TableColumn<Sale,Double> priceColumn = new TableColumn<>("Sold Price");
+			priceColumn.setCellValueFactory(data -> new javafx.beans.property.SimpleObjectProperty<>(data.getValue().getPrice()));
 
-		table.getColumns().addAll(saleDateColumn,idColumn,buyerColumn,priceColumn);
+		table.getColumns().addAll(idColumn,saleDateColumn,buyerColumn,priceColumn);
 
 		//Buttons
-
+		
 		//Stage
-		VBox layout = new VBox(10, table, buttons);
+		VBox layout = new VBox(10, table/* buttons*/);
 		layout.setPadding(new Insets(10));
 		
 		return layout;
