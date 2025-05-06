@@ -26,12 +26,14 @@ public class InventoryViewController {
 			table.setItems(carData);
 		
 		//making columns
+		TableColumn<Car, String> SKUColumn = new TableColumn<>("SKU");
+			SKUColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getSKU()));
 		TableColumn<Car, String> makeColumn = new TableColumn<>("Make");
 			makeColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getMake()));
 		TableColumn<Car, String> modelColumn = new TableColumn<>("Model");
 			modelColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getModel()));
-		TableColumn<Car, String> SKUColumn = new TableColumn<>("SKU");
-			SKUColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getSKU()));
+		TableColumn<Car, String> trimColumn = new TableColumn<>("Trim");
+			modelColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getTrimLvl()));
 		TableColumn<Car, Integer> yearColumn = new TableColumn<>("Year");
 			yearColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleIntegerProperty(cellData.getValue().getYear()).asObject());
 		TableColumn<Car, Double> priceColumn = new TableColumn<>("Price");
@@ -39,7 +41,7 @@ public class InventoryViewController {
 		TableColumn<Car, Boolean> availabilityColumn = new TableColumn<>("Availability");
 			availabilityColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleBooleanProperty(cellData.getValue().isAvailable()));
 		
-		table.getColumns().addAll(SKUColumn,makeColumn,modelColumn,yearColumn,priceColumn,availabilityColumn);
+		table.getColumns().addAll(SKUColumn,makeColumn,modelColumn,trimColumn,yearColumn,priceColumn,availabilityColumn);
 		
 	     Button addCarButton = new Button("Add Car");
 	     Button removeCarButton = new Button("Remove Car");

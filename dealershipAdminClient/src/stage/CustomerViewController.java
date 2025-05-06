@@ -53,11 +53,11 @@ public class CustomerViewController {
 			VBox formLayout = new VBox(10);
 				formLayout.setPadding(new Insets(10));
 			TextField nameField = new TextField();
-				nameField.setPromptText("Name");
+				nameField.setPromptText("Enter Name");
 			TextField emailField = new TextField();
-				emailField.setPromptText("Email");
+				emailField.setPromptText("Enter Email");
 			TextField phoneField = new TextField();
-				nameField.setPromptText("Phone #");
+				nameField.setPromptText("Enter Phone #");
 				
 			Button submitButton = new Button("Confirm");
 			submitButton.setOnAction(e -> {

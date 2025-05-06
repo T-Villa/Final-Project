@@ -1,5 +1,6 @@
 package stage;
 
+import control.CustomerManager;
 import control.InventoryManager;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -15,6 +16,7 @@ import javafx.stage.Stage;
 public class MainController {
 	private final BorderPane mainLayout = new BorderPane();
 	private final InventoryManager inventoryManager = new InventoryManager();
+	private final CustomerManager customerManager = new CustomerManager();
 	
 	public void show(Stage stage) {
 		HBox navigation = new HBox(10);
@@ -62,11 +64,9 @@ public class MainController {
 	}
 	
 	private void setCutomersView(String name) {
-	    Label label = new Label(name + " View - Under Construction");
-	    label.setStyle("-fx-font-size: 20; -fx-text-fill: gray;");
-	    VBox layout = new VBox(label);
-	    layout.setPadding(new Insets(20));
-	    mainLayout.setCenter(layout);
+	    CustomerViewController customer = new CustomerViewController(customerManager);
+	    Node customerView = customer.getView();
+	    mainLayout.setCenter(customerView);
 	}
 	private void setSalesView(String name) {
 	    Label label = new Label(name + " View - Under Construction");
