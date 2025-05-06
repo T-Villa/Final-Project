@@ -57,7 +57,7 @@ public class CustomerViewController {
 			TextField emailField = new TextField();
 				emailField.setPromptText("Enter Email");
 			TextField phoneField = new TextField();
-				nameField.setPromptText("Enter Phone #");
+				phoneField.setPromptText("Enter Phone #");
 				
 			Button submitButton = new Button("Confirm");
 			submitButton.setOnAction(e -> {

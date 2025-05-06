@@ -33,7 +33,9 @@ public class InventoryViewController {
 		TableColumn<Car, String> modelColumn = new TableColumn<>("Model");
 			modelColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getModel()));
 		TableColumn<Car, String> trimColumn = new TableColumn<>("Trim");
-			modelColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getTrimLvl()));
+			trimColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getTrimLvl()));
+		TableColumn<Car,String> colorColumn = new TableColumn<>("Color");
+			colorColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getColor()));
 		TableColumn<Car, Integer> yearColumn = new TableColumn<>("Year");
 			yearColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleIntegerProperty(cellData.getValue().getYear()).asObject());
 		TableColumn<Car, Double> priceColumn = new TableColumn<>("Price");
@@ -41,7 +43,7 @@ public class InventoryViewController {
 		TableColumn<Car, Boolean> availabilityColumn = new TableColumn<>("Availability");
 			availabilityColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleBooleanProperty(cellData.getValue().isAvailable()));
 		
-		table.getColumns().addAll(SKUColumn,makeColumn,modelColumn,trimColumn,yearColumn,priceColumn,availabilityColumn);
+		table.getColumns().addAll(SKUColumn,makeColumn,modelColumn,trimColumn,colorColumn,yearColumn,priceColumn,availabilityColumn);
 		
 	     Button addCarButton = new Button("Add Car");
 	     Button removeCarButton = new Button("Remove Car");
@@ -90,8 +92,8 @@ public class InventoryViewController {
 						Integer year = yearField.getValue();
 						String make = makeField.getValue(); 
 						String model = modelField.getValue(); 
-						String color = colorField.getValue();
 						String trimLvl = trimLvlField.getValue();
+						String color = colorField.getValue();
 						double price = Double.parseDouble(priceField.getText());
 						
 						required(year,"Year");
