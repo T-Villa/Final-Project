@@ -11,8 +11,4 @@ public class ReportGen {
 	public static int countSales(List<Sale> sales) {
 		return sales.size(); 
 	}
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> branch 'main' of https://github.com/T-Villa/Final-Project
