@@ -9,6 +9,6 @@ public class ReportGen {
 		return sales.stream().mapToDouble(Sale::getPrice).sum();	
 		}
 	public static int countSales(List<Sale> sales) {
-		return sales.size();
+		return sales.size(); 
 	}
 }
