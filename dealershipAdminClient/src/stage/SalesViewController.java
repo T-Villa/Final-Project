@@ -1,5 +1,6 @@
 package stage;
 
+import control.CustomerManager;
 import control.SalesManager;
 import model.Customer;
 import model.Sale;
@@ -27,9 +28,12 @@ public class SalesViewController {
 	
 	public Node getView() {
 		TableView<Sale> table = new TableView<>();
-		ObservableList<Sale> saleData = FXCollections.observableArrayList(salesManager.get);
-		table.setItems(customerData);
+		ObservableList<Sale> salesData = FXCollections.observableArrayList(salesManager.genReport());
+		table.setItems(salesData);
 		
 		return null;
+	}
+	public SalesViewController(SalesManager salesManager) {
+		this.salesManager = salesManager;
 	}
 }
