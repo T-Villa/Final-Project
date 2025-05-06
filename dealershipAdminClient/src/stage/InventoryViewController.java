@@ -4,7 +4,7 @@ package stage;
 import model.Car;
 import model.CarData;
 import control.InventoryManager;
-import util.CarFilter;
+import util.Filter;
 
 import java.util.List;
 
@@ -141,6 +141,45 @@ public class InventoryViewController {
 	    			table.refresh();
 	    		}
 	     });
+	     
+	     //Filter
+/*	     VBox filters = new VBox(10);
+	     	filters.setPadding(new Insets(10));
+	     	
+	     ComboBox<String> makeFilter = new ComboBox<>();
+	     	makeFilter.setPromptText("Make");
+	     	makeFilter.getItems().addAll(CarData.getMakes());
+		 
+	     ComboBox<Integer> yearFilter = new ComboBox<>();
+	     	yearFilter.setPromptText("Year");
+	     	yearFilter.getItems().addAll(CarData.getAvailableYears());
+	
+		 TextField minPriceFilter = new TextField();
+		    minPriceFilter.setPromptText("Minimum Price");
+		 TextField maxPriceFilter = new TextField();
+		 	maxPriceFilter.setPromptText("Maximum Price");
+		 	
+		 Button apply = new Button("Apply Filter");
+		 	apply.setOnAction(event->{
+		 		String make = makeFilter.getValue();
+		 		//String model = modelFilter.getValue();
+		 		Integer year = yearFilter.getValue();
+		 		
+		 		
+		 	List<Car> filtered = Filter.filterCars(inventoryManager.getAllCars(),make,year,minprice,maxPrice);
+		 	carData.setAll(filtered);
+		 	});
+		 Button reset = new Button("Clear Fliters");
+		 	reset.setOnAction(event->{
+		 		carData.setAll(inventoryManager.getAllCars());
+		 		makeFilter.setValue(null);
+		 		yearFilter.setValue(null);
+		 		//modelFilter.setValue(null);
+		 		minPriceFilter.clear();
+		 		maxPriceFilter.clear();
+		 	});
+		 	filters.getChildren().addAll(new Label("Filter Cars"),makeFilter,yearFilter,apply,reset);*/
+	     
 	     HBox buttons = new HBox(10, addCarButton, removeCarButton, markSoldButton);
 	     buttons.setPadding(new Insets(10));
 		
