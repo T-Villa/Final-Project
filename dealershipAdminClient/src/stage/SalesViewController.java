@@ -4,6 +4,7 @@ import control.CustomerManager;
 import control.SalesManager;
 import model.Customer;
 import model.Sale;
+import model.Customer;
 
 import java.util.List;
 
@@ -30,8 +31,26 @@ public class SalesViewController {
 		TableView<Sale> table = new TableView<>();
 		ObservableList<Sale> salesData = FXCollections.observableArrayList(salesManager.genReport());
 		table.setItems(salesData);
+
+		//Columns 
+		TableColumn<Sale,LocalDate> saleDateColumn = new TableColumn<>();
+			saleDateColumn.setCellValueFactory(data -> new javafx.beans.property.SimpleLocalDateProperty(data.getValue().getSaleDate()));
+		TableColumn<Sale,String> idColumn = new TableColumn<>();
+			idColumn.setCellValueFacotry(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getSaleID()));
+		TableColumn<Sale,String> buyerColumn = new TableColumn<>();
+			buyerColumn.setCellValueFacotry(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getCustomer()));
+		TableColumn<Sale,Stirng> priceColumn = new TableColumn<>();
+			priceColumn.setCellValueFactory(data -> new javafx.beans.property.SimpleDoubleProperty(data.getValue().getPrice()));
+
+		table.getColumns().addAll(saleDateColumn,idColumn,buyerColumn,priceColumn);
+
+		//Buttons
+
+		//Stage
+		VBox layout = new VBox(10, table, buttons);
+		layout.setPadding(new Insets(10));
 		
-		return null;
+		return layout;
 	}
 	public SalesViewController(SalesManager salesManager) {
 		this.salesManager = salesManager;
