@@ -4,6 +4,7 @@ package stage;
 import model.Car;
 import model.CarData;
 import control.InventoryManager;
+import util.CarFilter;
 
 import java.util.List;
 
