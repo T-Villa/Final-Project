@@ -3,7 +3,10 @@ package stage;
 
 import model.Car;
 import model.CarData;
+import model.Customer;
+import control.CustomerManager;
 import control.InventoryManager;
+import control.SalesManager;
 import util.Filter;
 
 import java.util.List;
@@ -20,6 +23,8 @@ import javafx.stage.Stage;
 
 public class InventoryViewController {
 	private final InventoryManager inventoryManager;
+	private final CustomerManager customerManager;
+	private final SalesManager salesManager;
 	
 	 public Node getView() {
 		TableView<Car> table = new TableView<>();
@@ -48,7 +53,7 @@ public class InventoryViewController {
 		
 	     Button addCarButton = new Button("Add Car");
 	     Button removeCarButton = new Button("Remove Car");
-	     Button markSoldButton = new Button("Mark as Sold");
+	     Button sellButton = new Button("Process Sale");
 	     
 	     addCarButton.setOnAction(e->{
 	    	Stage formStage = new Stage();
@@ -111,6 +116,7 @@ public class InventoryViewController {
 					} catch (Exception ex) {
 						Alert error = new Alert(Alert.AlertType.ERROR, "Invalid Input: "+ ex.getMessage());
 						error.showAndWait();
+						return;
 					}
 				});
 				formLayout.getChildren().addAll(yearField,makeField,modelField,trimLvlField,colorField,priceField, submitButton);
@@ -128,18 +134,98 @@ public class InventoryViewController {
 	    				}
 	    				else {
 	    					new Alert(Alert.AlertType.ERROR,"Car not found").showAndWait();
+	    					return;
 	    				}
 	    			}
 	    			else {
 	    				new Alert(Alert.AlertType.ERROR,"Select car to remove").showAndWait();
+	    				return;
 	    			}
 	     });
-	     markSoldButton.setOnAction(event->{
+	     sellButton.setOnAction(event->{
 	    	Car selected = table.getSelectionModel().getSelectedItem();
-	    		if(selected != null) {
-	    			selected.setAvailability(false);
-	    			table.refresh();
+	    		if(selected == null) {
+	    			new Alert(Alert.AlertType.ERROR,"Please select a vehicle").showAndWait();
+	    			return;
 	    		}
+	    		if(!selected.isAvailable()) {
+	    			new Alert(Alert.AlertType.ERROR,"This car has been sold\nSorry").showAndWait();
+	    			return;
+	    		}
+	    		
+	    		Stage sellStage = new Stage();
+	    			sellStage.setTitle("Process Sale");
+	    		
+	    		VBox sellLayout = new VBox(10);
+	    			sellLayout.setPadding(new Insets(10));
+	    		
+	    		ComboBox<Customer> buyer = new ComboBox<>();
+	    			buyer.setPromptText("Select Customer");
+	    			buyer.getItems().addAll(customerManager.getAllCustomers());
+	    		
+	    		Button newBuyer = new Button("Add Customer");
+	    			newBuyer.setOnAction(e -> {
+	    				Stage formStage = new Stage();
+	    				formStage.setTitle("New Customer");
+	    				
+	    				VBox formLayout = new VBox(10);
+	    					formLayout.setPadding(new Insets(10));
+	    				TextField nameField = new TextField();
+	    					nameField.setPromptText("Enter Name");
+	    				TextField emailField = new TextField();
+	    					emailField.setPromptText("Enter Email");
+	    				TextField phoneField = new TextField();
+	    					phoneField.setPromptText("Enter Phone #");
+	    					
+	    				Button submitButton = new Button("Add");
+	    				submitButton.setOnAction(submit -> {
+	    					try {
+	    						String name = nameField.getText();
+	    						String email = emailField.getText();
+	    						String phone = phoneField.getText();
+	    						
+	    						required(name,"Name");
+	    						required(email,"Email");
+	    						required(phone,"Phone number");
+	    						
+	    						Customer newCustomer = new Customer(name,email,phone);
+	    						customerManager.addCustomer(newCustomer);
+	    						buyer.getItems().add(newCustomer);
+	    						buyer.setValue(newCustomer);
+	    						
+	    						formStage.close();
+	    					} catch (Exception ex) {
+	    						new Alert(Alert.AlertType.ERROR, "Invalid Input: "+ ex.getMessage()).showAndWait();
+	    					}
+	    				});
+	    				formLayout.getChildren().addAll(nameField,emailField,phoneField,submitButton);
+	    				Scene formScene = new Scene(formLayout, 300, 250);
+	    				formStage.setScene(formScene);
+	    				formStage.show();
+	    			});
+	    			
+	    			TextField priceField = new TextField();
+		    		priceField.setPromptText("Sale Pice");
+		    		
+		    		Button confirm = new Button("Confirm");
+		    			confirm.setOnAction(e ->{
+		    				try {
+		    					Customer customer = buyer.getValue();
+		    					double salePrice = Double.parseDouble(priceField.getText());
+		    					required(buyer,"Customer");
+		    					required(salePrice,"Price");
+		    					
+		    					salesManager.processSale(selected, customer, salePrice);
+		    					table.refresh();
+		    					sellStage.close();
+		    					
+		    				} catch (Exception ex) {
+	    						new Alert(Alert.AlertType.ERROR, "Invalid Input: "+ ex.getMessage()).showAndWait();
+		    				}
+		    			});
+		    			sellLayout.getChildren().addAll(new Label("Customer: "), buyer, newBuyer, new Label("Sale Price: "),priceField,confirm);
+		    			sellStage.setScene(new Scene(sellLayout,350,250));
+		    			sellStage.show();
 	     });
 	     
 	     //Filter
@@ -180,7 +266,7 @@ public class InventoryViewController {
 		 	});
 		 	filters.getChildren().addAll(new Label("Filter Cars"),makeFilter,yearFilter,apply,reset);*/
 	     
-	     HBox buttons = new HBox(10, addCarButton, removeCarButton, markSoldButton);
+	     HBox buttons = new HBox(10, addCarButton, removeCarButton, sellButton);
 	     buttons.setPadding(new Insets(10));
 		
 		 VBox layout = new VBox(10, table, buttons);
@@ -194,8 +280,10 @@ public class InventoryViewController {
 			 throw new IllegalArgumentException(field+" must be filled out");
 		 }
 	 }
-	public InventoryViewController(InventoryManager inventoryManager) {
+	public InventoryViewController(InventoryManager inventoryManager, CustomerManager customerManager, SalesManager salesManager) {
 		this.inventoryManager = inventoryManager;
+		this.customerManager = customerManager;
+		this.salesManager = salesManager;
 	}
 }
 //add accessories (optional choice for user to add, not required)

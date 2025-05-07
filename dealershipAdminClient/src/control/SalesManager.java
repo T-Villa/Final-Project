@@ -28,7 +28,7 @@ public class SalesManager {
 		return new ArrayList<>(sales);
 	}
 	
-	public List<Sale> getSalesByCustomer(String customerID){
-		return sales.stream().filter(sale -> sale.getCustomer().equals(customerID)).toList();
+	public List<Sale> getSalesByCustomer(String customer){
+		return sales.stream().filter(sale -> sale.getCustomer().equals(customer)).toList();
 	}
 }

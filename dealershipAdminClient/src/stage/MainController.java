@@ -61,7 +61,7 @@ public class MainController {
 	}
 	
 	private void setInventoryView() {
-		InventoryViewController inventory = new InventoryViewController(inventoryManager);
+		InventoryViewController inventory = new InventoryViewController(inventoryManager, customerManager, salesManager);
 		Node inventoryView = inventory.getView();
 		mainLayout.setCenter(inventoryView);
 	}
