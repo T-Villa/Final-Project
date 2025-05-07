@@ -39,7 +39,7 @@ public class SalesViewController {
 		TableColumn<Sale,LocalDate> saleDateColumn = new TableColumn<>("Date Sold");
 			saleDateColumn.setCellValueFactory(data -> new javafx.beans.property.SimpleObjectProperty<>(data.getValue().getSaleDate()));
 		TableColumn<Sale,String> buyerColumn = new TableColumn<>("Buyer");
-			buyerColumn.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getCustomer()));
+			buyerColumn.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getCustomer().getName()));
 		TableColumn<Sale,Double> priceColumn = new TableColumn<>("Sold Price");
 			priceColumn.setCellValueFactory(data -> new javafx.beans.property.SimpleObjectProperty<>(data.getValue().getPrice()));
 
