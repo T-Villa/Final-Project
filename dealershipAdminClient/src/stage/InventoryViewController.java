@@ -290,6 +290,7 @@ public class InventoryViewController {
 	     HBox panel = new HBox(20, filters,table);
 	     panel.setPadding(new Insets(10));
 	     filters.setPrefWidth(120);
+	     table.setPrefWidth(700);
 	     
 		 VBox layout = new VBox(10, panel, buttons);
 		 layout.setPadding(new Insets(10));
