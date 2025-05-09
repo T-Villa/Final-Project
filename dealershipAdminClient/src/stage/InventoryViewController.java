@@ -257,7 +257,7 @@ public class InventoryViewController {
 		 	List<Car> filtered = Filter.filterCars(inventoryManager.getAllCars(),make,year,minPrice,maxPrice);
 		 	carData.setAll(filtered);
 		 	});
-		 Button reset = new Button("Clear Fliters");
+		 Button reset = new Button("Clear Filters");
 		 	reset.setOnAction(event->{
 		 		carData.setAll(inventoryManager.getAllCars());
 		 		makeFilter.setValue(null);
@@ -266,12 +266,16 @@ public class InventoryViewController {
 		 		minPriceFilter.clear();
 		 		maxPriceFilter.clear();
 		 	});
-		 	filters.getChildren().addAll(new Label("Filter Cars"),makeFilter,yearFilter,apply,reset);
+		 	filters.getChildren().addAll(new Label("Filter Cars"),makeFilter,yearFilter,minPriceFilter,maxPriceFilter,apply,reset);
 	     
 	     HBox buttons = new HBox(10, addCarButton, removeCarButton, sellButton);
 	     buttons.setPadding(new Insets(10));
-		
-		 VBox layout = new VBox(10, table, buttons);
+	     
+	     HBox panel = new HBox(20, filters,table);
+	     panel.setPadding(new Insets(10));
+	     filters.setPrefWidth(180);
+	     
+		 VBox layout = new VBox(10, panel, buttons);
 		 layout.setPadding(new Insets(10));
 	     priceColumn.setPrefWidth(100);
 
