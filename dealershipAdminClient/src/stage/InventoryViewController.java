@@ -246,9 +246,13 @@ public class InventoryViewController {
 	     	makeFilter.setPromptText("Make");
 	     	makeFilter.getItems().addAll(CarData.getMakes());
 		 
-	     ComboBox<Integer> yearFilter = new ComboBox<>();
-	     	yearFilter.setPromptText("Year");
-	     	yearFilter.getItems().addAll(CarData.getAvailableYears());
+	     ComboBox<Integer> minYearFilter = new ComboBox<>();
+	     minYearFilter.setPromptText("Min Year");
+	     minYearFilter.getItems().addAll(CarData.getAvailableYears());
+	     
+	     ComboBox<Integer> maxYearFilter = new ComboBox<>();
+	     maxYearFilter.setPromptText("Max Year");
+	     maxYearFilter.getItems().addAll(CarData.getAvailableYears());
 	
 		 TextField minPriceFilter = new TextField();
 		    minPriceFilter.setPromptText("Minimum Price");
@@ -259,31 +263,33 @@ public class InventoryViewController {
 		 	apply.setOnAction(event->{
 		 		String make = makeFilter.getValue();
 		 		//String model = modelFilter.getValue();
-		 		Integer year = yearFilter.getValue();
+		 		Integer minYear = minYearFilter.getValue();
+		 		Integer maxYear = maxYearFilter.getValue();
 		 		Double minPrice = Double.parseDouble(minPriceFilter.getText());
 		 		Double maxPrice = Double.parseDouble(maxPriceFilter.getText());
 		 		
 		 		
-		 	List<Car> filtered = Filter.filterCars(inventoryManager.getAllCars(),make,year,minPrice,maxPrice);
+		 	List<Car> filtered = Filter.filterCars(inventoryManager.getAllCars(),make,minYear,maxYear,minPrice,maxPrice);
 		 	carData.setAll(filtered);
 		 	});
 		 Button reset = new Button("Clear Filters");
 		 	reset.setOnAction(event->{
 		 		carData.setAll(inventoryManager.getAllCars());
 		 		makeFilter.setValue(null);
-		 		yearFilter.setValue(null);
+		 		minYearFilter.setValue(null);
+		 		maxYearFilter.setValue(null);
 		 		//modelFilter.setValue(null);
 		 		minPriceFilter.clear();
 		 		maxPriceFilter.clear();
 		 	});
-		 	filters.getChildren().addAll(new Label("Filter Cars"),makeFilter,yearFilter,minPriceFilter,maxPriceFilter,apply,reset);
+		 	filters.getChildren().addAll(new Label("Filter Cars"),makeFilter,minYearFilter,maxYearFilter,minPriceFilter,maxPriceFilter,apply,reset);
 	     
 	     HBox buttons = new HBox(10, addCarButton, removeCarButton, sellButton);
 	     buttons.setPadding(new Insets(10));
 	     
 	     HBox panel = new HBox(20, filters,table);
 	     panel.setPadding(new Insets(10));
-	     filters.setPrefWidth(180);
+	     filters.setPrefWidth(120);
 	     
 		 VBox layout = new VBox(10, panel, buttons);
 		 layout.setPadding(new Insets(10));
