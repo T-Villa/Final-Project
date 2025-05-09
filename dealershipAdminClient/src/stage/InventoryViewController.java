@@ -229,7 +229,7 @@ public class InventoryViewController {
 	     });
 	     
 	     //Filter
-/*	     VBox filters = new VBox(10);
+	     VBox filters = new VBox(10);
 	     	filters.setPadding(new Insets(10));
 	     	
 	     ComboBox<String> makeFilter = new ComboBox<>();
@@ -250,9 +250,11 @@ public class InventoryViewController {
 		 		String make = makeFilter.getValue();
 		 		//String model = modelFilter.getValue();
 		 		Integer year = yearFilter.getValue();
+		 		Double minPrice = Double.parseDouble(minPriceFilter.getText());
+		 		Double maxPrice = Double.parseDouble(maxPriceFilter.getText());
 		 		
 		 		
-		 	List<Car> filtered = Filter.filterCars(inventoryManager.getAllCars(),make,year,minprice,maxPrice);
+		 	List<Car> filtered = Filter.filterCars(inventoryManager.getAllCars(),make,year,minPrice,maxPrice);
 		 	carData.setAll(filtered);
 		 	});
 		 Button reset = new Button("Clear Fliters");
@@ -264,7 +266,7 @@ public class InventoryViewController {
 		 		minPriceFilter.clear();
 		 		maxPriceFilter.clear();
 		 	});
-		 	filters.getChildren().addAll(new Label("Filter Cars"),makeFilter,yearFilter,apply,reset);*/
+		 	filters.getChildren().addAll(new Label("Filter Cars"),makeFilter,yearFilter,apply,reset);
 	     
 	     HBox buttons = new HBox(10, addCarButton, removeCarButton, sellButton);
 	     buttons.setPadding(new Insets(10));
