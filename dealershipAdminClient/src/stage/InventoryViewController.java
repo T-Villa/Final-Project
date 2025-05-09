@@ -4,6 +4,7 @@ package stage;
 import model.Car;
 import model.CarData;
 import model.Customer;
+import model.Sale;
 import control.CustomerManager;
 import control.InventoryManager;
 import control.SalesManager;
@@ -165,11 +166,11 @@ public class InventoryViewController {
 	    		
 	    		Button newBuyer = new Button("Add Customer");
 	    			newBuyer.setOnAction(e -> {
-	    				Stage formStage = new Stage();
-	    				formStage.setTitle("New Customer");
+	    				Stage addCustomerStage = new Stage();
+	    					addCustomerStage.setTitle("New Customer");
 	    				
-	    				VBox formLayout = new VBox(10);
-	    					formLayout.setPadding(new Insets(10));
+	    				VBox layout = new VBox(10);
+	    					layout.setPadding(new Insets(10));
 	    				TextField nameField = new TextField();
 	    					nameField.setPromptText("Enter Name");
 	    				TextField emailField = new TextField();
@@ -193,38 +194,47 @@ public class InventoryViewController {
 	    						buyer.getItems().add(newCustomer);
 	    						buyer.setValue(newCustomer);
 	    						
-	    						formStage.close();
+	    						addCustomerStage.close();
 	    					} catch (Exception ex) {
 	    						new Alert(Alert.AlertType.ERROR, "Invalid Input: "+ ex.getMessage()).showAndWait();
 	    					}
 	    				});
-	    				formLayout.getChildren().addAll(nameField,emailField,phoneField,submitButton);
-	    				Scene formScene = new Scene(formLayout, 300, 250);
-	    				formStage.setScene(formScene);
-	    				formStage.show();
+	    				layout.getChildren().addAll(nameField,emailField,phoneField,submitButton);
+	    				Scene formScene = new Scene(layout, 300, 250);
+	    				addCustomerStage.setScene(formScene);
+	    				addCustomerStage.show();
 	    			});
 	    			
 	    			TextField priceField = new TextField();
-		    		priceField.setPromptText("Sale Pice");
+		    			priceField.setPromptText("Sale Pice");
+		    		
+		    		TextField sellerField = new TextField();
+		    			sellerField.setPromptText("Seller");
 		    		
 		    		Button confirm = new Button("Confirm");
 		    			confirm.setOnAction(e ->{
 		    				try {
 		    					Customer customer = buyer.getValue();
+		    					//Sale seller = sellerField.getText();
 		    					double salePrice = Double.parseDouble(priceField.getText());
+		    					String seller = sellerField.getText();
 		    					required(buyer,"Customer");
 		    					required(salePrice,"Price");
+		    					required(sellerField,"Employee");
 		    					
-		    					salesManager.processSale(selected, customer, salePrice);
-		    					table.refresh();
-		    					sellStage.close();
+		    					salesManager.processSale(selected, customer,seller,salePrice);
+		    						table.refresh();
+		    						sellStage.close();
 		    					
 		    				} catch (Exception ex) {
 	    						new Alert(Alert.AlertType.ERROR, "Invalid Input: "+ ex.getMessage()).showAndWait();
 		    				}
 		    			});
-		    			sellLayout.getChildren().addAll(new Label("Customer: "), buyer, newBuyer, new Label("Sale Price: "),priceField,confirm);
-		    			sellStage.setScene(new Scene(sellLayout,350,250));
+		    			
+		    			sellLayout.getChildren().addAll(new Label("Customer: "), buyer, newBuyer, 
+		    											new Label("Sale Price: "),priceField,
+		    											new Label("Employee: "),sellerField,confirm);
+		    			sellStage.setScene(new Scene(sellLayout,350,280));
 		    			sellStage.show();
 	     });
 	     

@@ -44,7 +44,7 @@ public class CustomerViewController {
 		table.getColumns().addAll(idColumn,nameColumn,emailColumn,phoneColumn);
 			
 		Button addCustomerButton = new Button("Add Customer");
-		Button removeCustomerButton = new Button("Remove Custoemr");
+		Button removeCustomerButton = new Button("Remove Customer");
 		
 		addCustomerButton.setOnAction(event -> { 
 			Stage formStage = new Stage();
