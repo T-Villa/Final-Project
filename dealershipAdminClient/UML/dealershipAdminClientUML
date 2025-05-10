@@ -1,0 +1,176 @@
+<<interface>> InterfaceCarRepo
+-------------------------------
++ addCar(Car car)
++ removeCar(String SKU): boolean
++ getAllCars(): List<Car>
++ getCarBySKU(String SKU): Car
++ carUnavailable(String SKU): boolean
+
+<<interface>> InterfaceCustomerRepo
+-----------------------------------
++ addCustomer(Customer customer)
++ getCustomer(String ID): Customer
++ getAllCustomers(): List<Customer>
++ removeCustomer(String ID): boolean
+
+<<interface>> InterfaceSaleRepo
+-------------------------------
++ processSale(Car car, Customer customer, String seller, double price)
++ genReport(): List<Sale>
++ getSalesBySeller(String seller): List<Sale>
+
+--------------------------------------------------------------
+
+Car
+-------------------------------------------------
+- year: int
+- make: String
+- model: String
+- SKU: String
+- color: String
+- trimLvl: String
+- accessories: List<String>
+- price: double
+- availability: boolean
+-------------------------------------------------
++ Car(int, String, String, String, String, List<String>, double)
++ getYear(): int
++ getMake(): String
++ getModel(): String
++ getSKU(): String
++ getColor(): String
++ getTrimLvl(): String
++ getAccessories(): List<String>
++ getPrice(): double
++ isAvailable(): boolean
++ setPrice(double)
++ setAvailability(boolean)
+
+Customer
+--------------------------------------
+- ID: String
+- name: String
+- email: String
+- phone: String
+--------------------------------------
++ Customer(String, String, String)
++ getID(): String
++ getName(): String
++ getEmail(): String
++ getPhone(): String
++ toString(): String
+
+Sale
+-----------------------------------------------------
+- saleID: String
+- carSKU: String
+- description: String
+- customer: Customer
+- seller: String
+- saleDay: LocalDate
+- price: double
+-----------------------------------------------------
++ Sale(String, String, Car, Customer, String, double)
++ getSaleID(): String
++ getCarSKU(): String
++ getDescription(): String
++ getCustomer(): Customer
++ getSeller(): String
++ getSaleDate(): LocalDate
++ getPrice(): double
+
+--------------------------------------------------------------
+
+CustomerManager
+--------------------------------------
+<<implements>> InterfaceCustomerRepo
+- customers: Map<String, Customer>
+--------------------------------------
++ addCustomer(Customer)
++ getCustomer(String): Customer
++ getAllCustomers(): List<Customer>
++ removeCustomer(String): boolean
+
+InventoryManager
+--------------------------------------
+<<implements>> InterfaceCarRepo
+- inventory: Map<String, Car>
+--------------------------------------
++ addCar(Car)
++ removeCar(String): boolean
++ carUnavailable(String): boolean
++ getAllCars(): List<Car>
++ getCarBySKU(String): Car
+
+SalesManager
+---------------------------------------------------
+<<implements>> InterfaceSaleRepo
+- sales: List<Sale>
+---------------------------------------------------
++ processSale(Car, Customer, String, double)
++ genReport(): List<Sale>
++ getSalesBySeller(String): List<Sale>
++ static calculateTotalRev(List<Sale>): double
++ static countSales(List<Sale>): int
+
+--------------------------------------------------------------
+
+Utility Classes (helper / static only)
+---------------------------------------------------
+CarData
++ getAvailableYears(): List<Integer>
++ getMakes(): List<String>
++ getModel(String): List<String>
++ getTrim(String, String): List<String>
++ getColor(): List<String>
+
+Filter
++ filterCars(...)
++ filterLayout(...)
++ sellerFilter(...)
++ customerFilter(...)
++ customerSalesFilter(...)
+
+ButtonController
++ addCarButton(...)
++ removeCarButton(...)
++ sellButton(...)
++ addCustomerButton(...)
++ removeCustomerButton(...)
++ genReportButton(...)
+
+--------------------------------------------------------------
+
+View Controllers (JavaFX GUIs)
+---------------------------------------------------
+InventoryViewController
+- inventoryManager: InventoryManager
+- customerManager: CustomerManager
+- salesManager: SalesManager
++ InventoryViewController(...)
++ getView(): Node
+
+CustomerViewController
+- customerManager: CustomerManager
++ CustomerViewController(...)
++ getView(): Node
+
+SalesViewController
+- salesManager: SalesManager
++ SalesViewController(...)
++ getView(): Node
+
+MainController
+- mainLayout: BorderPane
+- inventoryManager: InventoryManager
+- customerManager: CustomerManager
+- salesManager: SalesManager
++ show(Stage)
++ setInventoryView()
++ setCustomersView()
++ setSalesView()
+
+Client
+<<extends>> Application
++ main(String[])
++ start(Stage)
