@@ -3,7 +3,7 @@ Final Project for Data structures &amp; algorithms
 #
 >Language: Java
 
-# Project Title [ to be determined ]
+# Car Dealership System - Admin Client 
 
 > GUI client for luxury car dealership employees. Allows employees with log-in access to:
 >   view car inventory / listings,
