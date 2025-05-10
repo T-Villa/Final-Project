@@ -34,8 +34,8 @@ public class MainController {
 		
 		showroomButton.setOnAction(event -> setShowroomView());
 		inventoryButton.setOnAction(event -> setInventoryView());
-		customersButton.setOnAction(event -> setCutomersView("Customers"));
-	    salesButton.setOnAction(event -> setSalesView("Sales"));
+		customersButton.setOnAction(event -> setCutomersView());
+	    salesButton.setOnAction(event -> setSalesView());
 
 		
 		navigation.getChildren().addAll(showroomButton,inventoryButton,customersButton,salesButton);
@@ -66,13 +66,13 @@ public class MainController {
 		mainLayout.setCenter(inventoryView);
 	}
 	
-	private void setCutomersView(String name) {
+	private void setCutomersView() {
 	    CustomerViewController customer = new CustomerViewController(customerManager);
 	    Node customerView = customer.getView();
 	    mainLayout.setCenter(customerView);
 	}
-	private void setSalesView(String name) {
-	    SalesViewController sales = new SalesViewController(salesManager);
+	private void setSalesView() {
+	    SalesViewController sales = new SalesViewController(salesManager, inventoryManager);
 	    Node salesView = sales.getView();
 	    mainLayout.setCenter(salesView);
 	}

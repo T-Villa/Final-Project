@@ -21,12 +21,11 @@ public class Car {
 	
 	
 //Constructors
-	public Car(int year, String make, String model, String color, String trimLvl, List<String> accessoies, double price) {
+	public Car(int year, String make, String model, String trimLvl, String color,List<String> accessoies, double price) {
 		this.make = requiredField(make,"Make");
 		this.model = requiredField(model,"Model");
 		this.color = requiredField(color, "Color");
 		this.trimLvl = requiredField(trimLvl, "Trim Level");
-		//this.vin = requiredField(vin, "VIN"); randomly generate VIN?
 		
 		//Arguments
 		if(year < 1990 || year > LocalDate.now().getYear()) {

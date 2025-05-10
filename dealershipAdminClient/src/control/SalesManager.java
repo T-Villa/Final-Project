@@ -18,7 +18,7 @@ public class SalesManager {
 			throw new IllegalArgumentException("Car and Customer must be filled out");
 		}
 		
-		Sale newSale = new Sale(car.getSKU(),customer,seller, price);
+		Sale newSale = new Sale(car.getSKU(),seller, car, customer,seller, price);
 		sales.add(newSale);
 		
 		car.setAvailability(false);

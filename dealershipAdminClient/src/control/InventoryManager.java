@@ -30,7 +30,7 @@ public class InventoryManager {
 		}
 		inventory.put(SKU, car);
 	}
-	public boolean carUnavailable(String SKU) { //setting car to just unavailable instead of fully removing may be better to keep track of history 
+	public boolean carUnavailable(String SKU) { 
 		Car car = inventory.get(SKU);
 		
 		if (car != null) {
@@ -46,8 +46,11 @@ public class InventoryManager {
 	public List<Car> getAllCars(){
 		return new ArrayList<>(inventory.values());
 	}
+	public Car getCarBySKU(String SKU) {
+	    return inventory.values().stream()
+	               .filter(car -> car.getSKU().equals(SKU))
+	               .findFirst()
+	               .orElse(null);
 	}
-	//public List<Car> filterMake(String Make);
-	//public List<Car> filterAvailable(boolean availability);
-	
+}	
 	
