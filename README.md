@@ -6,8 +6,9 @@ Final Project for Data structures &amp; algorithms
 # Car Dealership System - Admin Client 
 
 > GUI client for luxury car dealership employees. Allows employees to:
->   view car inventory / listings,
->   view client details / sales reports,
->   add/edit/remove listings,
->   add/remove images to listings,
->   Filter cars by prrice / brand / attributes.   
+>   view dealership inventory,
+>   add/remove cars from inventory,
+>   process sales,
+>   view sales reports,
+>   Filter cars by price / brand / attributes.
+>   Filter sales by Seller / Customer
