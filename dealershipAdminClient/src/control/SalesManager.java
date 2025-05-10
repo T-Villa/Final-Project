@@ -39,9 +39,7 @@ public class SalesManager implements InterfaceSaleRepo {
     @Override
     public List<Sale> getSalesBySeller(String seller) {
         if (seller == null) return List.of();
-        return sales.stream()
-                .filter(sale -> sale.getSeller().equals(seller))
-                .toList();
+        return sales.stream().filter(sale -> sale.getSeller().equals(seller)).toList();
     }
     
 	public static double calculateTotalRev(List<Sale> sales) {

@@ -2,7 +2,6 @@ package stage;
 
 import java.time.LocalDate;
 
-import control.InventoryManager;
 import control.SalesManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,9 +10,11 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.Sale;
 import util.ButtonController;
+import util.Filter;
 
 // sale processing interface
 public class SalesViewController {
@@ -45,7 +46,10 @@ public class SalesViewController {
 		Button genReport = ButtonController.genReportButton(salesData);
 			
 		//Stage
-		VBox layout = new VBox(10, table, genReport);
+		HBox filter = new HBox(10, Filter.sellerFilter(salesManager, salesData), Filter.customerSalesFilter(salesManager, salesData));
+        filter.setPadding(new Insets(10));
+		
+		VBox layout = new VBox(10,filter, table, genReport);
 			layout.setPadding(new Insets(10));
 			carBought.setPrefWidth(200);
 

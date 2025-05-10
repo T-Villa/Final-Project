@@ -13,6 +13,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.Customer;
 import util.ButtonController;
+import util.Filter;
 
 public class CustomerViewController {
 	private final CustomerManager customerManager;
@@ -39,8 +40,11 @@ public class CustomerViewController {
 
 		HBox buttons = new HBox(10, addCustomer, removeCustomer);
 	     buttons.setPadding(new Insets(10));
+	     
+	     HBox filter = new HBox(10, Filter.customerFilter(customerManager, customerData));
+	        filter.setPadding(new Insets(10));
 		
-		 VBox layout = new VBox(10, table, buttons);
+		 VBox layout = new VBox(10, filter, table, buttons);
 		 layout.setPadding(new Insets(10));
 
 	     return layout;		

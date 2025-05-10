@@ -322,7 +322,7 @@ public class ButtonController {
 				Label totalRev = new Label ("Total revenue = $"+SalesManager.calculateTotalRev(salesData));
 				
 			layout.getChildren().addAll(totalSales, totalRev);	
-			Scene reportScene = new Scene(layout,200,100);
+			Scene reportScene = new Scene(layout,400,100);
 				reportStage.setScene(reportScene);
 				reportStage.show();	
 		});

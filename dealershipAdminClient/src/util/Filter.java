@@ -2,11 +2,15 @@
 package util;
 
 import model.Car;
+import model.Customer;
+import model.Sale;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
+import control.CustomerManager;
 import control.InventoryManager;
+import control.SalesManager;
 import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -22,8 +26,6 @@ public class Filter {
 		return cars.stream()
 				.filter(car->make==null||car.getMake().equalsIgnoreCase(make))
 				.filter(car->model==null||car.getModel().equalsIgnoreCase(model))
-				//.filter(car->trimLvl==null||car.getTrimLvl().equalsIgnoreCase(trimLvl))
-				//.filter(car->color==null||car.getColor().equalsIgnoreCase(color))
 				.filter(car->minYear==null||car.getYear() >= minYear)
 				.filter(car->maxYear==null||car.getYear() <= maxYear)
 				
@@ -105,4 +107,88 @@ public class Filter {
 		 	filters.getChildren().addAll(new Label("Filter Cars"),makeFilter,modelFilter,minYearFilter,maxYearFilter,minPriceFilter,maxPriceFilter,apply,reset);
 			return filters;
 	}
+	
+	public static VBox sellerFilter(SalesManager salesManager,ObservableList<Sale> salesData) {
+	     VBox filters = new VBox(10);
+	     	filters.setPadding(new Insets(10));
+	     	
+	     TextField sellerFilterField = new TextField();
+	        sellerFilterField.setPromptText("Enter Seller Name");
+
+	     Button filterButton = new Button("Filter by Seller");
+	        filterButton.setOnAction(e -> {
+	            
+	     String seller = sellerFilterField.getText();
+	            if (seller != null && !seller.isEmpty()) {
+	                salesData.setAll(salesManager.getSalesBySeller(seller));
+	            } else {
+	                new Alert(Alert.AlertType.WARNING, "Please enter a seller name").showAndWait();
+	            }
+	        });
+
+	        Button resetButton = new Button("Reset");
+	        resetButton.setOnAction(e -> {
+	            salesData.setAll(salesManager.genReport());
+	            sellerFilterField.clear();
+	        });
+	        filters.getChildren().addAll(new Label("Filter Sales by Seller"), sellerFilterField, filterButton, resetButton);
+	        return filters;
+	}
+	
+	public static VBox customerFilter(CustomerManager customerManager,ObservableList<Customer> customerData) {
+	     VBox filters = new VBox(10);
+	     	filters.setPadding(new Insets(10));
+	     	
+	     TextField nameFilterField = new TextField();
+	        nameFilterField.setPromptText("Enter Customer Name");
+
+	     Button filterButton = new Button("Filter by Name");
+	        filterButton.setOnAction(e -> {
+	            
+	        String name = nameFilterField.getText();
+	            if (name != null && !name.isEmpty()) {
+	                List<Customer> filtered = customerManager.getAllCustomers().stream().filter(c -> c.getName().toLowerCase().contains(name.toLowerCase())).toList();
+	                customerData.setAll(filtered);
+	            } else {
+	                new Alert(Alert.AlertType.WARNING, "Please enter a customer name").showAndWait();
+	            }
+	        });
+
+	        Button resetButton = new Button("Reset");
+	        resetButton.setOnAction(e -> {
+	            customerData.setAll(customerManager.getAllCustomers());
+	            nameFilterField.clear();
+	        });
+	        filters.getChildren().addAll(new Label("Filter Customers by Name"), nameFilterField, filterButton, resetButton);
+	        return filters;
+	}
+	
+	public static VBox customerSalesFilter(SalesManager salesManager,ObservableList<Sale> salesData) {
+	     VBox filters = new VBox(10);
+	     	filters.setPadding(new Insets(10));
+	     	
+	     TextField nameFilterField = new TextField();
+	        nameFilterField.setPromptText("Enter Customer Name");
+
+	     Button filterButton = new Button("Filter by Name");
+	        filterButton.setOnAction(e -> {
+	            
+	        String name = nameFilterField.getText();
+	            if (name != null && !name.isEmpty()) {
+	                List<Sale> filtered = salesManager.genReport().stream().filter(sale -> sale.getCustomer().getName().toLowerCase().contains(name.toLowerCase())).toList();
+	                salesData.setAll(filtered);
+	            } else {
+	                new Alert(Alert.AlertType.WARNING, "Please enter a customer name").showAndWait();
+	            }
+	        });
+
+	        Button resetButton = new Button("Reset");
+	        resetButton.setOnAction(e -> {
+	        	salesData.setAll(salesManager.genReport());
+	            nameFilterField.clear();
+	        });
+	        filters.getChildren().addAll(new Label("Filter Sales by Customer"), nameFilterField, filterButton, resetButton);
+	        return filters;
+	}
+
 }

@@ -56,8 +56,8 @@ public class InventoryViewController {
 	     
 	    HBox panel = new HBox(20, Filter.filterLayout(inventoryManager, carData),table);
 	     panel.setPadding(new Insets(10));
-	     Filter.filterLayout(inventoryManager, carData).setPrefWidth(120);
-	     table.setPrefWidth(700);
+	     Filter.filterLayout(inventoryManager, carData).setPrefWidth(250);
+	     table.setPrefWidth(1000);
 	     
 	    VBox layout = new VBox(10, panel, buttons);
 		 layout.setPadding(new Insets(10));
@@ -73,5 +73,3 @@ public class InventoryViewController {
 	}
 }
 //add accessories (optional choice for user to add, not required)
-//add filter for inventory
-//be able to sort columns
