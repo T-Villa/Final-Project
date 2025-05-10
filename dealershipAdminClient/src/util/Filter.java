@@ -200,7 +200,7 @@ public class Filter {
 	}
 	
 /**
-     * Creates a VBox to filter sales records by customer name.
+* Creates a VBox to filter sales records by customer name.
      * @param salesManager the SalesManager
      * @param salesData    the ObservableList of sales to update
      * @return VBox containing customer filter controls for sales
