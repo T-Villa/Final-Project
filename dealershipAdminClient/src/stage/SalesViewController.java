@@ -12,14 +12,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.VBox;
-import model.Car;
 import model.Sale;
 import util.ButtonController;
 
 // sale processing interface
 public class SalesViewController {
 	private final SalesManager salesManager;
-	private final InventoryManager inventoryManager;
 	
 	public Node getView() {
 		TableView<Sale> table = new TableView<>();
@@ -54,9 +52,7 @@ public class SalesViewController {
 		
 		return layout;
 	}
-	public SalesViewController(SalesManager salesManager, InventoryManager inventoryManager) {
+	public SalesViewController(SalesManager salesManager) {
 		this.salesManager = salesManager;
-		this.inventoryManager = inventoryManager;
-
 	}
 }

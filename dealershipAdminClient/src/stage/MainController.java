@@ -72,7 +72,7 @@ public class MainController {
 	    mainLayout.setCenter(customerView);
 	}
 	private void setSalesView() {
-	    SalesViewController sales = new SalesViewController(salesManager, inventoryManager);
+	    SalesViewController sales = new SalesViewController(salesManager);
 	    Node salesView = sales.getView();
 	    mainLayout.setCenter(salesView);
 	}
