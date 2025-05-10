@@ -17,7 +17,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.Car;
-import model.CarData;
 import model.Customer;
 import model.Sale;
 import javafx.collections.ObservableList;

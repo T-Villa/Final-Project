@@ -2,7 +2,6 @@
 package util;
 
 import model.Car;
-import model.CarData;
 
 import java.util.*;
 import java.util.stream.Collectors;

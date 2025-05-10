@@ -1,5 +1,5 @@
 //Class for data on car for drop down menus in GUI
-package model;
+package util;
 
 import java.util.*;
 
