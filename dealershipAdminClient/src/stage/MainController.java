@@ -32,7 +32,7 @@ public class MainController {
 	    Button salesButton = new Button("Sales");
 
 		
-		showroomButton.setOnAction(event -> setShowroomView());
+	//	showroomButton.setOnAction(event -> setShowroomView());
 		inventoryButton.setOnAction(event -> setInventoryView());
 		customersButton.setOnAction(event -> setCutomersView());
 	    salesButton.setOnAction(event -> setSalesView());
@@ -41,7 +41,7 @@ public class MainController {
 		navigation.getChildren().addAll(showroomButton,inventoryButton,customersButton,salesButton);
 		mainLayout.setTop(navigation);
 		
-		setShowroomView();
+	//	setShowroomView();
 		
 		Scene scene = new Scene(mainLayout,1000,600);
 		stage.setTitle("Luxury Car Sales System");
@@ -49,7 +49,7 @@ public class MainController {
 		stage.show();
 	}
 
-	private void setShowroomView() {
+/*	private void setShowroomView() {
 		ShowroomViewController showroom = new ShowroomViewController(inventoryManager);
 		//Node showroomView = showroom.getView();
 	    Label label = new Label("Showroom" + " View - Under Construction");
@@ -58,7 +58,7 @@ public class MainController {
 	    layout.setPadding(new Insets(20));
 	    mainLayout.setCenter(layout);
 		//mainLayout.setCenter(showroomView);
-	}
+	}*/
 	
 	private void setInventoryView() {
 		InventoryViewController inventory = new InventoryViewController(inventoryManager, customerManager, salesManager);

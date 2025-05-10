@@ -107,7 +107,7 @@ public class CarData {
         trimLvl.put("McLaren", mclaren);
 	}
 	public static List<String> getTrim(String make, String model) {
-		return trimLvl.getOrDefault(make, Map.of()).getOrDefault(model, List.of());
+		return trimLvl.getOrDefault(make, Map.of()).getOrDefault(model, List.of("Standard"));
 	}
 	public static List<String> getColor(){
 		return List.of("Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Black", "White", "Silver", "Grey", "Nardo Grey", "Matte Black");

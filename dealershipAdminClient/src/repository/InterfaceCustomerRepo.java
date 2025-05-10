@@ -1,12 +1,13 @@
+//Access to customer data.
 package repository;
-import model.Customer;
 
+import model.Customer;
 import java.util.*;
-//Abstracts access to customer data.
+
 public interface InterfaceCustomerRepo {
 	void addCustomer(Customer customer);
-	void removeCustoemr(Customer customer);
-	
-	Optional<Customer> findById(String id);
-	List<Customer> getAllCustomers();
+    Customer getCustomer(String ID);
+    List<Customer> getAllCustomers();
+    boolean removeCustomer(String ID);
+
 }

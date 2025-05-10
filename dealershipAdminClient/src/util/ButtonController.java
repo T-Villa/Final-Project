@@ -318,8 +318,8 @@ public class ButtonController {
 			VBox layout = new VBox(10);
 				layout.setPadding(new Insets(10));
 				
-				Label totalSales = new Label("Total sales = "+ReportGen.countSales(salesData));
-				Label totalRev = new Label ("Total revenue = $"+ReportGen.calculateTotalRev(salesData));
+				Label totalSales = new Label("Total sales = "+SalesManager.countSales(salesData));
+				Label totalRev = new Label ("Total revenue = $"+SalesManager.calculateTotalRev(salesData));
 				
 			layout.getChildren().addAll(totalSales, totalRev);	
 			Scene reportScene = new Scene(layout,200,100);

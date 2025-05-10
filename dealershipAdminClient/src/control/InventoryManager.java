@@ -5,41 +5,48 @@
 package control;
 
 import model.Car;
+import repository.InterfaceCarRepo;
 
 import java.util.*;
 
-public class InventoryManager {
+public class InventoryManager implements InterfaceCarRepo {
 	private final Map<String, Car> inventory = new HashMap<>(); //would map or list be better?
 	
+    @Override
 	public void addCar(Car car) {
-		String SKU = car.getSKU();
-		
-		if(inventory.containsKey(SKU)) {
-			throw new IllegalArgumentException("This SKU already exsists");
-		}
-		inventory.put(SKU, car);
-	}
-	public boolean carUnavailable(String SKU) { 
-		Car car = inventory.get(SKU);
-		
-		if (car != null) {
-			car.setAvailability(false);
-			return true;
-		}
-		return false;
-	}
-	public boolean removeCar(String SKU) {
-		return inventory.remove(SKU) != null;
-	}
+        if (car == null) {
+            throw new IllegalArgumentException("Car must not be null");
+        }
+        String SKU = car.getSKU();
+        if (inventory.containsKey(SKU)) {
+            throw new IllegalArgumentException("This SKU already exists");
+        }
+        inventory.put(SKU, car);
+    }
+    	
+    @Override
+    public boolean removeCar(String SKU) {
+        return inventory.remove(SKU) != null;
+    }
+    
+    @Override
+    public boolean carUnavailable(String SKU) {
+        Car car = inventory.get(SKU);
+        if (car != null) {
+            car.setAvailability(false);
+            return true;
+        }
+        return false;
+    }
 	
-	public List<Car> getAllCars(){
-		return new ArrayList<>(inventory.values());
-	}
-	public Car getCarBySKU(String SKU) {
-	    return inventory.values().stream()
-	               .filter(car -> car.getSKU().equals(SKU))
-	               .findFirst()
-	               .orElse(null);
-	}
+    @Override
+    public List<Car> getAllCars() {
+        return new ArrayList<>(inventory.values());
+    }
+    
+    @Override
+    public Car getCarBySKU(String SKU) {
+        return inventory.get(SKU);
+    }
 }	
 	

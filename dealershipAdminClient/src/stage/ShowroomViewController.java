@@ -1,4 +1,4 @@
-package stage;
+/*package stage;
 
 import java.util.List;
 
@@ -33,4 +33,4 @@ public class ShowroomViewController {
 	public ShowroomViewController(InventoryManager inventoryManager) {
 		this.inventoryManager = inventoryManager;
 	}
-}
+}*/
