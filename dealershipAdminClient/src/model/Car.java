@@ -41,7 +41,7 @@ public class Car {
 		this.accessories = null; // change 
 		
 		this.availability = true;
-		this.SKU = UUID.randomUUID().toString();//possbily change
+		this.SKU = UUID.randomUUID().toString();
 
 		
 	}

@@ -35,38 +35,46 @@ public class ButtonController {
 	    	VBox formLayout = new VBox(10);
 	    		formLayout.setPadding(new Insets(10));
 	    		
-	    	ComboBox<Integer> yearField = new ComboBox<>();
+	        ComboBox<Integer> yearField = new ComboBox<>();
 	    		yearField.setPromptText("Year");
 	    		yearField.getItems().addAll(CarData.getAvailableYears());
 	    	ComboBox<String> makeField = new ComboBox<>();
 	    		makeField.setPromptText("Make");
-	    		makeField.getItems().addAll(CarData.getMakes());
-	    		
+	    		makeField.getItems().addAll(CarData.getMakes());	
 	    	ComboBox<String> modelField = new ComboBox<>();
 	    		modelField.setPromptText("model");
-	    			makeField.setOnAction(event ->{
-	    				String choosenMake = makeField.getValue();
-	    				List<String> models = CarData.getModel(choosenMake);
-	    				modelField.getItems().setAll(models);
-	    				modelField.setValue(null);
-	    			});
-	    	    	
-	    	ComboBox<String> trimLvlField = new ComboBox<>();
-			    	trimLvlField.setPromptText("Trim");	
-			    		modelField.setOnAction(event -> {
-			    			String choosenMake = makeField.getValue();
-			    			String choosenModel = modelField.getValue();
-			    			List<String> trimLvl = CarData.getTrim(choosenMake, choosenModel);
-			    			trimLvlField.getItems().setAll(trimLvl);
-			    			trimLvlField.setValue(null);
-			    		});
-			    	
-	    	ComboBox<String> colorField = new ComboBox<>();
+		   	ComboBox<String> trimLvlField = new ComboBox<>();
+		    	trimLvlField.setPromptText("Trim");	
+		    ComboBox<String> colorField = new ComboBox<>();
 	    		colorField.setPromptText("color");
 	    		colorField.getItems().addAll(CarData.getColor());
 		    TextField priceField = new TextField();
-				priceField.setPromptText("Price");	
-			Button submitButton = new Button("Confirm");
+				priceField.setPromptText("Price");
+
+	    		
+	    		makeField.setOnAction(event ->{
+	    			String choosenMake = makeField.getValue();
+	    				if (choosenMake != null) {
+	    					List<String> models = CarData.getModel(choosenMake);
+	    					modelField.getItems().setAll(models);
+		    				modelField.setValue(null);
+							trimLvlField.getItems().clear();
+		    		        trimLvlField.setValue(null);
+
+	    			    }
+	    			});
+	    	    	
+	    		modelField.setOnAction(event -> {
+			    	String choosenMake = makeField.getValue();
+			   		String choosenModel = modelField.getValue();
+			   		    if (choosenMake != null && choosenModel != null) {
+			    			List<String> trimLvl = CarData.getTrim(choosenMake, choosenModel);
+			    			trimLvlField.getItems().setAll(trimLvl);
+			    			trimLvlField.setValue(null);
+		    		    }
+		    		});
+			    	
+	    	Button submitButton = new Button("Confirm");
 				submitButton.setOnAction(event ->{
 					try {
 						Integer year = yearField.getValue();
