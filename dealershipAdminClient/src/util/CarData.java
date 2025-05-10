@@ -1,4 +1,9 @@
-//Class for data on car for drop down menus in GUI
+/**
+* Utility class providing static methods for car data used in GUI drop-downs.
+* Contains makes, models, trims, and colors for car selection.
+* 
+* @author Thomas Villareale
+*/
 package util;
 
 import java.util.*;

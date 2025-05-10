@@ -1,7 +1,10 @@
-/** Handles sales processing updates inventory and customer data
- * Methods:
- * processSale(), generateReport(), getSalesByCustomer()
- **/
+/**
+* Handles sales processing and reporting.
+* Implements the InterfaceSaleRepo interface.
+* Records sales transactions and provides reports.
+* 
+* @author Thomas Villareale
+*/
 package control;
 
 import model.Sale;

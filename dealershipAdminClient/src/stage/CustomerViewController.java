@@ -1,4 +1,9 @@
-// display customer list, add/edit form, view history
+/**
+* Controller class for the Customer View in the JavaFX application.
+* Displays customer table and provides buttons for adding/removing customers and filtering.
+* 
+* @author Thomas Villareale
+*/
 package stage;
 
 import control.CustomerManager;
@@ -18,6 +23,10 @@ import util.Filter;
 public class CustomerViewController {
 	private final CustomerManager customerManager;
 	
+/**
+* Builds and returns the Customer View layout node.
+     * @return Node representing the customer view layout
+*/
 	public Node getView() {
 		TableView<Customer> table = new TableView<>();
 		ObservableList<Customer> customerData = FXCollections.observableArrayList(customerManager.getAllCustomers());
@@ -49,7 +58,11 @@ public class CustomerViewController {
 
 	     return layout;		
 	}
-	
+    
+/**
+* Constructs a CustomerViewController.
+     * @param customerManager the CustomerManager instance
+*/
 		public CustomerViewController(CustomerManager customerManager) {
 			this.customerManager = customerManager;
 		}

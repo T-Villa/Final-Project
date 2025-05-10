@@ -1,4 +1,10 @@
-//For car data operations.
+/**
+* Interface for car data operations.
+* Defines methods to manage car inventory.
+* Implemented by InventoryManager.
+* 
+* Thomas Villareale 
+*/
 package repository;
 
 import model.Car;

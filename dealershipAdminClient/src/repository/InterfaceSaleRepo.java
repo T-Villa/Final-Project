@@ -1,4 +1,10 @@
-///Handles sale transaction records.
+/**
+* Interface for sale transaction records.
+* Defines methods for processing and retrieving sales data.
+* Implemented by SalesManager.
+* 
+* @author Thomas Villareale 
+*/
 package repository;
 
 import model.Sale;

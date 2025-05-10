@@ -1,4 +1,9 @@
-//display inventory with filter option
+/**
+* Controller class for the Inventory View in the JavaFX application.
+* Displays the car inventory table and provides buttons for adding, removing, and selling cars.
+* 
+* @author Thomas Villareale 
+*/
 package stage;
 
 import control.CustomerManager;
@@ -22,6 +27,10 @@ public class InventoryViewController {
 	private final CustomerManager customerManager;
 	private final SalesManager salesManager;
 	
+/**
+* Builds and returns the Inventory View layout node.
+     * @return Node representing the inventory view layout
+*/
 	 public Node getView() {
 		TableView<Car> table = new TableView<>();
 			ObservableList<Car> carData = FXCollections.observableArrayList(inventoryManager.getAllCars());
@@ -66,6 +75,12 @@ public class InventoryViewController {
 	     return layout;
 	}
 	 
+/**
+* Constructs an InventoryViewController.
+	     * @param inventoryManager the InventoryManager instance
+	     * @param customerManager  the CustomerManager instance
+	     * @param salesManager     the SalesManager instance
+*/
 	public InventoryViewController(InventoryManager inventoryManager, CustomerManager customerManager, SalesManager salesManager) {
 		this.inventoryManager = inventoryManager;
 		this.customerManager = customerManager;

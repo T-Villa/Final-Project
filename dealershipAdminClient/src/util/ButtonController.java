@@ -1,3 +1,9 @@
+/**
+* Utility class providing static methods to create JavaFX buttons for customer, inventory, and sales operations.
+* Handles button events for adding/removing cars, customers, and processing sales.
+* 
+* @author Thomas Villareale
+*/
 package util;
 
 import control.CustomerManager;
@@ -24,7 +30,12 @@ import javafx.collections.ObservableList;
 
 public class ButtonController {
 	
-	//Add car button
+/**
+* Creates a button for adding a car to inventory.
+* @param inventoryManager the InventoryManager object
+* @param table            the TableView displaying cars
+* @return the Add Car button
+*/
 	public static Button addCarButton(InventoryManager inventoryManager,TableView<Car> table) {
 		Button addCar = new Button("Add Car");
 		addCar.setOnAction(e->{
@@ -89,7 +100,7 @@ public class ButtonController {
 						required(trimLvl,"Trim");
 						required(color,"Color");
 						
-						Car newCar = new Car(year,make,model,trimLvl,color,List.of(),price);
+						Car newCar = new Car(year,make,model,trimLvl,color,price);
 						inventoryManager.addCar(newCar);
 						table.getItems().add(newCar);
 						
@@ -109,7 +120,12 @@ public class ButtonController {
 			return addCar;
 	}
 	
-	//Remove car button
+/**
+* Creates a button to remove a selected car from inventory.
+* @param inventoryManager the InventoryManager object
+* @param table            the TableView displaying cars
+* @return the Remove Car button
+*/
 	public static Button removeCarButton(InventoryManager inventoryManager,TableView<Car> table) {
 	    Button removeCar = new Button("Remove Car");
 
@@ -133,7 +149,14 @@ public class ButtonController {
 		return removeCar;
 	}
 	
-	//Sell car button
+/**
+* Creates a button to process a car sale. 
+* @param inventoryManager the InventoryManager object
+* @param customerManager  the CustomerManager object
+* @param salesManager     the SalesManager object
+* @param table            the TableView displaying cars
+* @return the Process Sale button
+*/
 	public static Button sellButton(InventoryManager inventoryManager,CustomerManager customerManager, SalesManager salesManager,TableView<Car> table) {
 	    Button sell = new Button("Process Sale");
 
@@ -228,16 +251,20 @@ public class ButtonController {
 		    				}
 		    			});
 		    			
-		    			sellLayout.getChildren().addAll(new Label("Customer: "), buyer, newBuyer, 
-		    											new Label("Sale Price: "),priceField,
-		    											new Label("Employee: "),sellerField,confirm);
+		    			sellLayout.getChildren().addAll(new Label("Customer: "), buyer, newBuyer, new Label("Sale Price: "),priceField,new Label("Employee: "),sellerField,confirm);
 		    			sellStage.setScene(new Scene(sellLayout,350,280));
 		    			sellStage.show();
 	     });
 	     return sell;
 	}
 	
-	//Add customer button
+/**
+* Creates a button to add a new customer.
+* @param customerData    the ObservableList for customer table
+* @param customerManager the CustomerManager object
+* @param table           the TableView displaying customers
+* @return the Add Customer button
+*/
 	public static Button addCustomerButton(ObservableList<Customer> customerData,CustomerManager customerManager,TableView<Customer> table) {
 		Button addCustomer = new Button("Add Customer");
 
@@ -284,7 +311,12 @@ public class ButtonController {
 		return addCustomer;
 	}
 	
-	//Remove Customer Button
+/**
+* Creates a button to remove a selected customer.
+* @param customerManager the CustomerManager object
+* @param table           the TableView displaying customers
+* @return the Remove Customer button
+*/
 	public static Button removeCustomerButton(CustomerManager customerManager,TableView<Customer> table) {
 		Button removeCustomer = new Button("Remove Customer");
 		removeCustomer.setOnAction(e->{
@@ -306,8 +338,11 @@ public class ButtonController {
 		return removeCustomer;
 	}
 
-	
-	//Generate reports button
+/**
+* Creates a button to display a simple sales report.
+* @param salesData the ObservableList of sales records
+* @return the Generate Report button
+*/
 	public static Button genReportButton(ObservableList<Sale> salesData) {
 		Button genReport = new Button("Create Sales Report");
 
@@ -329,6 +364,12 @@ public class ButtonController {
 		return genReport;
 	}
 
+/**
+* Helper method to validate that a required value is not null.
+* @param val   the value to check
+* @param field the name of the field
+* @throws IllegalArgumentException if val is null
+*/
 	 private static void required(Object val, String field) {
 		 if(val == null) {
 			 throw new IllegalArgumentException(field+" must be filled out");

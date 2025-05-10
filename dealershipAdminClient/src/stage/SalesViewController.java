@@ -1,3 +1,9 @@
+/**
+* Controller class for the Sales View in the JavaFX application.
+* Displays sales table and provides report generation and filtering by seller or customer.
+* 
+* @author Thomas Villareale 
+*/
 package stage;
 
 import java.time.LocalDate;
@@ -20,6 +26,11 @@ import util.Filter;
 public class SalesViewController {
 	private final SalesManager salesManager;
 	
+
+/**
+* Builds and returns the Sales View layout node. 
+     * @return Node representing the sales view layout
+*/
 	public Node getView() {
 		TableView<Sale> table = new TableView<>();
 		ObservableList<Sale> salesData = FXCollections.observableArrayList(salesManager.genReport());
@@ -56,6 +67,12 @@ public class SalesViewController {
 		
 		return layout;
 	}
+	
+
+/**
+* Constructs a SalesViewController.
+     * @param salesManager the SalesManager instance
+*/
 	public SalesViewController(SalesManager salesManager) {
 		this.salesManager = salesManager;
 	}

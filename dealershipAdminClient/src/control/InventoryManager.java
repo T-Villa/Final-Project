@@ -1,7 +1,10 @@
-/**Manages car listings (add/edit/delete/filter)
- * methods:
- * addCar(), removeCar(), filterByBrand(), filterByPrice(), etc
- **/
+/**
+* Manages car inventory including adding, removing, and filtering cars.
+* Implements the InterfaceCarRepo interface.
+* Provides access to car data.
+* 
+* @author Thomas Villareale
+*/
 package control;
 
 import model.Car;
@@ -10,7 +13,7 @@ import repository.InterfaceCarRepo;
 import java.util.*;
 
 public class InventoryManager implements InterfaceCarRepo {
-	private final Map<String, Car> inventory = new HashMap<>(); //would map or list be better?
+	private final Map<String, Car> inventory = new HashMap<>();
 	
     @Override
 	public void addCar(Car car) {

@@ -1,4 +1,10 @@
-//Access to customer data.
+/**
+* Interface for customer data operations.
+* Defines methods for managing customer records.
+* Implemented by CustomerManager.
+* 
+* @author Thomas Villareale
+*/
 package repository;
 
 import model.Customer;

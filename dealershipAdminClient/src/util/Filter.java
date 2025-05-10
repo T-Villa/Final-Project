@@ -1,4 +1,9 @@
-// methods for filtering cards by criteria
+/**
+* Utility class providing filtering functionality for inventory and sales.
+* Contains static methods to filter lists and create filter GUI components.
+* 
+* @author Thomas Villareale 
+*/
 package util;
 
 import model.Car;
@@ -22,6 +27,18 @@ import javafx.collections.ObservableList;
 
 
 public class Filter {
+
+/**
+* Filters a list of cars based on optional search criteria.
+     * @param cars      list of Car objects
+     * @param make      optional make
+     * @param model     optional model
+     * @param minYear   optional minimum year
+     * @param maxYear   optional maximum year
+     * @param minPrice  optional minimum price
+     * @param maxPrice  optional maximum price
+     * @return filtered list of Car objects
+*/
 	public static List<Car> filterCars(List<Car> cars, String make, String model, Integer minYear,Integer maxYear,Double minPrice, Double maxPrice){
 		return cars.stream()
 				.filter(car->make==null||car.getMake().equalsIgnoreCase(make))
@@ -33,7 +50,13 @@ public class Filter {
 				.filter(car->maxPrice == null||car.getPrice() <= maxPrice)
 				.collect(Collectors.toList());
 	}
-	
+    
+/**
+* Creates a VBox with car filter controls for the inventory view.
+     * @param inventoryManager the InventoryManager
+     * @param carData          the ObservableList of cars to update
+     * @return VBox containing filter controls
+*/
 	public static VBox filterLayout(InventoryManager inventoryManager, ObservableList<Car> carData) {
 	     VBox filters = new VBox(10);
 	     	filters.setPadding(new Insets(10));
@@ -108,6 +131,12 @@ public class Filter {
 			return filters;
 	}
 	
+/**
+* Creates a VBox to filter sales by seller name. 
+     * @param salesManager the SalesManager
+     * @param salesData    the ObservableList of sales to update
+     * @return VBox containing seller filter controls
+*/
 	public static VBox sellerFilter(SalesManager salesManager,ObservableList<Sale> salesData) {
 	     VBox filters = new VBox(10);
 	     	filters.setPadding(new Insets(10));
@@ -135,6 +164,13 @@ public class Filter {
 	        return filters;
 	}
 	
+
+/**
+* Creates a VBox to filter customers by customer name.
+     * @param customerManager the CustomerManager
+     * @param customerData the ObservableList of customers to update
+     * @return VBox containing customer filter controls
+*/
 	public static VBox customerFilter(CustomerManager customerManager,ObservableList<Customer> customerData) {
 	     VBox filters = new VBox(10);
 	     	filters.setPadding(new Insets(10));
@@ -163,6 +199,12 @@ public class Filter {
 	        return filters;
 	}
 	
+/**
+     * Creates a VBox to filter sales records by customer name.
+     * @param salesManager the SalesManager
+     * @param salesData    the ObservableList of sales to update
+     * @return VBox containing customer filter controls for sales
+*/
 	public static VBox customerSalesFilter(SalesManager salesManager,ObservableList<Sale> salesData) {
 	     VBox filters = new VBox(10);
 	     	filters.setPadding(new Insets(10));

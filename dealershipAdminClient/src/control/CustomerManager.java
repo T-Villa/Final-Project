@@ -1,4 +1,10 @@
-//Manages customer records and search
+/**
+ * Manages customer records and provides data access operations.
+ * Implements the InterfaceCustomerRepo interface.
+ * Handles adding, retrieving, listing, and removing customers.
+ * 
+ * @author Thomas Villareale
+ */
 package control;
 
 import model.Customer;

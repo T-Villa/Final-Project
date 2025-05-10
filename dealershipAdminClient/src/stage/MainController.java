@@ -1,3 +1,9 @@
+/**
+* Main controller class for the JavaFX application window.
+* Handles navigation between Inventory, Customer, and Sales views.
+* 
+* @author Thomas Villareale
+*/
 package stage;
 
 import control.CustomerManager;
@@ -21,6 +27,10 @@ public class MainController {
 	private final CustomerManager customerManager = new CustomerManager();
 	private final SalesManager salesManager = new SalesManager();
 	
+/**
+* Shows the main application window. 
+     * @param stage the primary Stage of the JavaFX application
+*/
 	public void show(Stage stage) {
 		HBox nav = new HBox(10);
 		nav.setPadding(new Insets(10));
